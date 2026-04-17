@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>幸福光刻婚紗｜台北中山區婚紗攝影</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans TC', sans-serif; background: #fff; color: #2a1f1a; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 1.2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(245,240,232,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(201,149,108,0.2);
+    }
+    .logo { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.15em; color: #2a1f1a; }
+    .logo span { color: #C9956C; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { text-decoration: none; color: #6b5a4e; font-size: 0.85rem; letter-spacing: 0.05em; transition: color 0.2s; }
+    .nav-links a:hover { color: #C9956C; }
+
+    .hero {
+      min-height: 100vh;
+      background: #F5F0E8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+    }
+    .hero-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      color: #C9956C;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.5;
+      color: #1a1210;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 b { font-weight: 500; color: #C9956C; }
+    .hero-desc {
+      max-width: 500px;
+      font-size: 0.95rem;
+      color: #7a6a5a;
+      line-height: 2;
+      margin-bottom: 3rem;
+    }
+    .cta-row { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+    .cta {
+      padding: 0.9rem 2.5rem;
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .cta-fill { background: #C9956C; color: #fff; }
+    .cta-fill:hover { background: #a87550; }
+    .cta-line { border: 1px solid #C9956C; color: #C9956C; }
+    .cta-line:hover { background: #C9956C; color: #fff; }
+
+    .about {
+      padding: 7rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about h2 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: #1a1210;
+      margin-bottom: 1.5rem;
+    }
+    .about h2 span { color: #C9956C; }
+    .about p {
+      font-size: 0.92rem;
+      color: #6b5a4e;
+      line-height: 2;
+      margin-bottom: 0.9rem;
+    }
+    .about-img {
+      background: linear-gradient(135deg, #F5F0E8, #d8c9b5);
+      border-radius: 4px;
+      height: 420px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+    }
+
+    .services {
+      background: #FAF8F4;
+      padding: 6rem 2rem;
+    }
+    .services h2 {
+      text-align: center;
+      font-size: 1.7rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .services .sub {
+      text-align: center;
+      color: #C9956C;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      margin-bottom: 3.5rem;
+    }
+    .cards-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+    }
+    .svc-card {
+      background: #fff;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-radius: 4px;
+      border-left: 3px solid #C9956C;
+    }
+    .svc-card .em { font-size: 2.2rem; margin-bottom: 1rem; }
+    .svc-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.8rem; }
+    .svc-card p { font-size: 0.82rem; color: #8a7a6a; line-height: 1.8; }
+    .svc-card .p { color: #C9956C; font-weight: 500; margin-top: 1rem; font-size: 0.9rem; }
+
+    .contact {
+      padding: 7rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .contact h2 { text-align: center; font-size: 1.7rem; font-weight: 300; margin-bottom: 0.5rem; }
+    .contact .sub { text-align: center; color: #C9956C; font-size: 0.75rem; letter-spacing: 0.3em; margin-bottom: 3.5rem; }
+    .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .c-info p { font-size: 0.88rem; color: #6b5a4e; line-height: 1.9; margin-bottom: 0.8rem; }
+    .c-info strong { color: #C9956C; display: block; margin-bottom: 0.3rem; font-weight: 500; }
+    form { display: flex; flex-direction: column; gap: 0.85rem; }
+    input, textarea {
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd5c8;
+      border-radius: 2px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      background: #FAF8F4;
+      color: #2a1f1a;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus { border-color: #C9956C; }
+    textarea { height: 110px; resize: vertical; }
+    button {
+      padding: 0.9rem;
+      background: #C9956C;
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background 0.3s;
+    }
+    button:hover { background: #a87550; }
+
+    footer {
+      background: #1a1210;
+      color: #7a6a5a;
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 0.82rem;
+      line-height: 2;
+    }
+    footer em { color: #C9956C; font-style: normal; }
+
+    @media (max-width: 768px) {
+      nav .nav-links { display: none; }
+      .about { grid-template-columns: 1fr; gap: 2rem; }
+      .about-img { height: 220px; }
+      .contact-row { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">幸福<span>光刻</span>婚紗</div>
+    <div class="nav-links">
+      <a href="#about">關於我們</a>
+      <a href="#services">方案</a>
+      <a href="#contact">聯絡</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-sub">WEDDING STUDIO · ZHONGSHAN · TAIPEI</p>
+    <h1>在光影裡，<br>刻下<b>幸福的形狀</b></h1>
+    <p class="hero-desc">幸福光刻婚紗，台北中山區自助婚紗工作室，以光影為筆，為每一對新人創作獨一無二的婚紗影像。</p>
+    <div class="cta-row">
+      <a href="#contact" class="cta cta-fill">立即預約諮詢</a>
+      <a href="#services" class="cta cta-line">查看方案</a>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div>
+      <h2>關於<span>幸福光刻</span></h2>
+      <p>創辦人 Mia 曾在法國學習時尚攝影，回台後專注於婚紗影像創作。工作室以「光是最好的化妝師」為核心理念，擅長利用自然光線雕塑出富有層次感的婚紗照。</p>
+      <p>不追求大量產出，每個月只接 4–5 組，用充裕的時間深度了解每對新人的故事，確保每一張照片都帶著溫度與情感。</p>
+      <p>台北中山區工作室，同時提供北部外景選址服務，也可至北台灣各景點拍攝。</p>
+    </div>
+    <div class="about-img">✨</div>
+  </section>
+
+  <section class="services" id="services">
+    <h2>拍攝方案</h2>
+    <p class="sub">PACKAGES</p>
+    <div class="cards-grid">
+      <div class="svc-card">
+        <div class="em">🌸</div>
+        <h3>Light 自然風婚紗</h3>
+        <p>4 小時外景、精修 40 張、一套造型、軟片後製風格</p>
+        <p class="p">NT$ 35,000 起</p>
+      </div>
+      <div class="svc-card">
+        <div class="em">🎞️</div>
+        <h3>Classic 全方案</h3>
+        <p>棚拍 + 外景共 8 小時、精修 100 張、三套造型、花絮影片</p>
+        <p class="p">NT$ 65,000 起</p>
+      </div>
+      <div class="svc-card">
+        <div class="em">💌</div>
+        <h3>Mini 訂婚寫真</h3>
+        <p>2 小時輕快拍攝、精修 20 張、單套造型，輕鬆留下紀念</p>
+        <p class="p">NT$ 16,000 起</p>
+      </div>
+      <div class="svc-card">
+        <div class="em">🗾</div>
+        <h3>海外婚紗</h3>
+        <p>京都、峇里、首爾、沖繩等地，兩天行程隨行拍攝</p>
+        <p class="p">依地點報價</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>聯絡我們</h2>
+    <p class="sub">CONTACT</p>
+    <div class="contact-row">
+      <div class="c-info">
+        <strong>地址</strong>
+        <p>台北市中山區林森北路 168 號 4 樓<br>（近中山捷運站 3 號出口）</p>
+        <strong>電話</strong>
+        <p>0937-654-321<br>Line ID：happylight_wedding</p>
+        <strong>營業時間</strong>
+        <p>週三至週一 11:00–18:30<br>週二公休</p>
+        <strong>Email</strong>
+        <p>happylight.wedding@gmail.com</p>
+      </div>
+      <form>
+        <input type="text" placeholder="您的姓名 *" required />
+        <input type="tel" placeholder="聯絡電話 *" required />
+        <input type="email" placeholder="Email" />
+        <textarea placeholder="想了解的方案、預計婚期，或其他問題…"></textarea>
+        <button type="submit">送出詢問</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 <em>幸福光刻婚紗</em> · 台北市中山區</p>
+    <p>每月限量 5 組 · 歡迎提前 3–6 個月諮詢</p>
+  </footer>
+
+</body>
+</html>

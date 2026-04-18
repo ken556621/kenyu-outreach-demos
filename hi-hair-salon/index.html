@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>嗨髮 Hi Hair Salon｜台北士林個人美髮工作室</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --light: #F9F6F2;
+    --taupe: #9A8C82;
+    --rose: #C4857A;
+    --dark: #1E1615;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    font-weight: 300;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  header.scrolled {
+    background: rgba(255,255,255,0.96);
+    box-shadow: 0 2px 20px rgba(30,22,21,0.08);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  header.scrolled .logo { color: var(--dark); }
+  nav { display: flex; gap: 32px; }
+  nav a {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  header.scrolled nav a { color: var(--taupe); }
+  nav a:hover { color: var(--rose); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    animation: zoomIn 8s ease-out forwards;
+  }
+  @keyframes zoomIn {
+    from { transform: scale(1.12); }
+    to { transform: scale(1); }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(30,22,21,0.62) 0%, rgba(196,133,122,0.18) 100%);
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+    color: var(--white);
+    padding: 0 24px;
+  }
+  .hero-subtitle {
+    font-size: 0.78rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+  .hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    opacity: 0.85;
+    max-width: 460px;
+    margin: 0 auto 36px;
+    letter-spacing: 0.03em;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 40px;
+    border: 1px solid rgba(255,255,255,0.7);
+    color: var(--white);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .btn-primary:hover {
+    background: var(--rose);
+    border-color: var(--rose);
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    filter: brightness(0.95);
+  }
+  .section-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    color: var(--dark);
+  }
+  .section-text {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--taupe);
+    margin-bottom: 16px;
+  }
+  .stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 36px;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--rose);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--taupe);
+    letter-spacing: 0.08em;
+  }
+
+  /* GALLERY */
+  .gallery-section {
+    background: var(--white);
+    padding: 80px 48px;
+  }
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .gallery-grid {
+    display: flex;
+    gap: 12px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .gallery-item {
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex 0.5s ease;
+  }
+  .gallery-item:hover { flex: 2.5; }
+  .gallery-item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+  .gallery-item:hover img { transform: scale(1.04); }
+
+  /* SERVICES */
+  .services {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .services-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 40px 32px;
+    border-top: 2px solid var(--rose);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(196,133,122,0.12);
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: var(--dark);
+  }
+  .service-desc {
+    font-size: 0.86rem;
+    line-height: 1.85;
+    color: var(--taupe);
+    margin-bottom: 20px;
+  }
+  .service-price {
+    font-size: 1.1rem;
+    color: var(--rose);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    background: var(--dark);
+    padding: 100px 48px;
+    color: var(--white);
+  }
+  .testimonials .section-title { color: var(--white); }
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.06);
+    padding: 36px 28px;
+    border-left: 2px solid var(--rose);
+  }
+  .stars { color: var(--rose); font-size: 1rem; margin-bottom: 16px; }
+  .testimonial-text {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 20px;
+  }
+  .testimonial-author {
+    font-size: 0.78rem;
+    color: var(--rose);
+    letter-spacing: 0.1em;
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 100px 48px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .contact-form {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 18px;
+    border: 1px solid #E0D8D2;
+    background: var(--white);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--rose); }
+  .form-group textarea { height: 120px; resize: vertical; }
+  .btn-submit {
+    padding: 16px;
+    background: var(--rose);
+    color: var(--white);
+    border: none;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn-submit:hover { background: var(--dark); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+  }
+  footer a { color: var(--rose); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    header { padding: 20px 24px; }
+    nav { display: none; }
+    .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .gallery-section { padding: 60px 24px; }
+    .gallery-grid { flex-direction: column; }
+    .gallery-item { flex: none; }
+    .gallery-item:hover { flex: none; }
+    .gallery-item img { height: 260px; }
+    .services { padding: 60px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonials { padding: 60px 24px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact { padding: 60px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <a class="logo" href="#">嗨髮 Hi Hair Salon</a>
+  <nav>
+    <a href="#about">關於我們</a>
+    <a href="#gallery">作品集</a>
+    <a href="#services">服務方案</a>
+    <a href="#testimonials">客戶評價</a>
+    <a href="#contact">預約諮詢</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-subtitle">士林區 · 個人美髮工作室</p>
+    <h1 class="hero-title">讓每一次剪髮<br>都成為一種享受</h1>
+    <p class="hero-desc">嗨髮 Hi Hair Salon，提供 24 小時彈性預約，讓你在最舒適的節奏裡，找回最美的自己。</p>
+    <a href="#contact" class="btn-primary">立即預約</a>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div>
+    <p class="section-tag">About Us</p>
+    <h2 class="section-title">用心傾聽<br>每一位客人的風格</h2>
+    <p class="section-text">嗨髮 Hi Hair Salon 是一間位於台北士林的個人美髮工作室，由設計師嗨豆親自服務每位客人。我們相信，一個好的髮型不只是剪刀的藝術，更是對你生活風格的理解。</p>
+    <p class="section-text">從細緻的頭皮諮詢到造型完成，全程一對一，讓你真正感受被照顧的溫度。</p>
+    <div class="stats">
+      <div>
+        <span class="stat-num">24h</span>
+        <span class="stat-label">彈性預約制</span>
+      </div>
+      <div>
+        <span class="stat-num">98%</span>
+        <span class="stat-label">客戶滿意度</span>
+      </div>
+      <div>
+        <span class="stat-num">1v1</span>
+        <span class="stat-label">一對一專屬服務</span>
+      </div>
+    </div>
+  </div>
+  <img class="about-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80" alt="美髮工作室">
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <p class="section-tag">Portfolio</p>
+    <h2 class="section-title">作品精選</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80" alt="染髮作品">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&q=80" alt="燙髮造型">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=600&q=80" alt="護髮療程">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&q=80" alt="剪髮造型">
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-header">
+    <p class="section-tag">Services</p>
+    <h2 class="section-title">服務方案</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-name">精剪造型</div>
+      <p class="service-desc">深度溝通髮型需求，從臉型分析到手感剪裁，打造最適合你的輪廓線條。</p>
+      <div class="service-price">NT$ 800 起</div>
+    </div>
+    <div class="service-card">
+      <div class="service-name">時尚染髮</div>
+      <p class="service-desc">從單色到漸層、霧面到光澤，使用精選染劑，讓色彩持久不傷髮。</p>
+      <div class="service-price">NT$ 2,500 起</div>
+    </div>
+    <div class="service-card">
+      <div class="service-name">燙髮設計</div>
+      <p class="service-desc">韓系捲、空氣感直髮、數位燙⋯根據你的生活型態推薦最合適的燙髮方案。</p>
+      <div class="service-price">NT$ 3,000 起</div>
+    </div>
+    <div class="service-card">
+      <div class="service-name">深層護髮</div>
+      <p class="service-desc">頭皮健康是美髮的根本。專業頭皮診斷 + 深層修護，讓髮絲恢復光澤彈性。</p>
+      <div class="service-price">NT$ 1,200 起</div>
+    </div>
+    <div class="service-card">
+      <div class="service-name">整體造型</div>
+      <p class="service-desc">婚禮、活動、拍照需求，提供完整整體造型服務，讓你在重要時刻閃閃發光。</p>
+      <div class="service-price">NT$ 2,000 起</div>
+    </div>
+    <div class="service-card">
+      <div class="service-name">頭皮理療</div>
+      <p class="service-desc">針對頭皮敏感、油脂過多、脫髮等問題，提供客製化頭皮護理方案。</p>
+      <div class="service-price">NT$ 1,800 起</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-header">
+    <p class="section-tag" style="color: var(--rose);">Reviews</p>
+    <h2 class="section-title">客戶真實評價</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">「半夜十一點突然想剪頭髮，沒想到真的可以預約！嗨豆設計師超有耐心，幫我分析臉型後推薦的髮型，朋友看到都問去哪剪的。」</p>
+      <div class="testimonial-author">— S. Chen，台北士林</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">「第一次來就愛上這裡的氛圍。完全沒有壓迫感，設計師會認真聽你說想要什麼，而不是只推銷最貴的方案。」</p>
+      <div class="testimonial-author">— A. Lin，新北市</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">「染了好幾家都不滿意，這次終於找到能把我要的奶茶色做到位的地方。護髮後頭髮超柔順，強烈推薦！」</p>
+      <div class="testimonial-author">— M. Wang，台北大安</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <p class="section-tag">Booking</p>
+  <h2 class="section-title">預約諮詢</h2>
+  <p class="section-text" style="text-align:center;">歡迎透過表單或 Line 與我們聯繫，我們將在 24 小時內回覆確認您的預約時間。</p>
+  <form class="contact-form" onsubmit="return false;">
+    <div class="form-row">
+      <div class="form-group">
+        <label>姓名</label>
+        <input type="text" placeholder="您的稱呼">
+      </div>
+      <div class="form-group">
+        <label>聯絡電話</label>
+        <input type="tel" placeholder="0912-345-678">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>希望預約日期</label>
+      <input type="date">
+    </div>
+    <div class="form-group">
+      <label>需要的服務</label>
+      <select>
+        <option value="">請選擇服務項目</option>
+        <option>精剪造型</option>
+        <option>時尚染髮</option>
+        <option>燙髮設計</option>
+        <option>深層護髮</option>
+        <option>整體造型</option>
+        <option>頭皮理療</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>其他備註</label>
+      <textarea placeholder="請描述您的髮型需求或任何問題..."></textarea>
+    </div>
+    <button type="submit" class="btn-submit">送出預約申請</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-logo">嗨髮 Hi Hair Salon</div>
+  <div>台北市士林區大北路 5 號 2 樓　|　<a href="tel:0905419879">0905-419-879</a>　|　24 小時預約制</div>
+  <div>© 2026 Hi Hair Salon. All rights reserved.</div>
+</footer>
+
+<script>
+  const h = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    h.classList.toggle('scrolled', scrollY > 60);
+  });
+</script>
+</body>
+</html>

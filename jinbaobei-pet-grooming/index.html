@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金寶貝寵物美容｜台北大安區溫柔寵物美容工作室</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --warm: #FFF8F0;
+    --green: #7A9E7E;
+    --brown: #8B6914;
+    --dark: #1F1A0E;
+    --white: #FFFFFF;
+    --text: #5C5040;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm);
+    color: var(--dark);
+    font-weight: 300;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  header.scrolled {
+    background: rgba(255,248,240,0.97);
+    box-shadow: 0 2px 20px rgba(31,26,14,0.08);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  header.scrolled .logo { color: var(--dark); }
+  nav { display: flex; gap: 32px; }
+  nav a {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  header.scrolled nav a { color: var(--text); }
+  nav a:hover { color: var(--green); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    animation: zoomIn 8s ease-out forwards;
+  }
+  @keyframes zoomIn {
+    from { transform: scale(1.12); }
+    to { transform: scale(1); }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(31,26,14,0.6) 0%, rgba(122,158,126,0.2) 100%);
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+    color: var(--white);
+    padding: 0 24px;
+  }
+  .hero-subtitle {
+    font-size: 0.78rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+  .hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    opacity: 0.85;
+    max-width: 480px;
+    margin: 0 auto 36px;
+    letter-spacing: 0.03em;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 40px;
+    border: 1px solid rgba(255,255,255,0.7);
+    color: var(--white);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .btn-primary:hover {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+  .section-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    color: var(--dark);
+  }
+  .section-text {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: var(--white);
+    border-left: 3px solid var(--green);
+  }
+  .feature-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .feature-text { font-size: 0.88rem; line-height: 1.7; color: var(--text); }
+  .feature-title { font-weight: 500; color: var(--dark); margin-bottom: 4px; font-size: 0.9rem; }
+
+  /* GALLERY */
+  .gallery-section {
+    background: var(--white);
+    padding: 80px 48px;
+  }
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .gallery-grid {
+    display: flex;
+    gap: 12px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .gallery-item {
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex 0.5s ease;
+    position: relative;
+  }
+  .gallery-item:hover { flex: 2.5; }
+  .gallery-item img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(31,26,14,0.7));
+    color: white;
+    padding: 24px 16px 16px;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-caption { opacity: 1; }
+
+  /* SERVICES */
+  .services {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .services-header { text-align: center; margin-bottom: 60px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 36px 28px;
+    border-top: 3px solid var(--green);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(122,158,126,0.15);
+  }
+  .service-emoji { font-size: 2rem; margin-bottom: 16px; display: block; }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: var(--dark);
+  }
+  .service-desc {
+    font-size: 0.86rem;
+    line-height: 1.85;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .service-price {
+    font-size: 1rem;
+    color: var(--green);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    background: var(--dark);
+    padding: 100px 48px;
+    color: var(--white);
+  }
+  .testimonials-header { text-align: center; margin-bottom: 60px; }
+  .testimonials-header .section-title { color: var(--white); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.06);
+    padding: 32px 24px;
+    border-left: 2px solid var(--green);
+  }
+  .stars { color: #F5C518; font-size: 1rem; margin-bottom: 14px; }
+  .testimonial-text {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 18px;
+  }
+  .testimonial-author {
+    font-size: 0.78rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 100px 48px;
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .contact-form {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 18px;
+    border: 1px solid #E8DDD0;
+    background: var(--white);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--green); }
+  .form-group textarea { height: 110px; resize: vertical; }
+  .btn-submit {
+    padding: 16px;
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn-submit:hover { background: var(--dark); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+  }
+  footer a { color: var(--green); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    header { padding: 20px 24px; }
+    nav { display: none; }
+    .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .gallery-section { padding: 60px 24px; }
+    .gallery-grid { flex-direction: column; }
+    .gallery-item, .gallery-item:hover { flex: none; }
+    .gallery-item img { height: 240px; }
+    .services { padding: 60px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonials { padding: 60px 24px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact { padding: 60px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <a class="logo" href="#">金寶貝寵物美容</a>
+  <nav>
+    <a href="#about">關於我們</a>
+    <a href="#gallery">作品集</a>
+    <a href="#services">服務方案</a>
+    <a href="#testimonials">客戶評價</a>
+    <a href="#contact">預約美容</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-subtitle">台北大安區 · 溫柔寵物美容</p>
+    <h1 class="hero-title">每一隻毛孩<br>都值得被溫柔對待</h1>
+    <p class="hero-desc">金寶貝寵物美容，用安撫不強迫的方式，讓你的毛小孩在最放鬆的狀態裡，享受專業美容服務。</p>
+    <a href="#contact" class="btn-primary">預約美容</a>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <img class="about-img" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80" alt="寵物美容工作室">
+  <div>
+    <p class="section-tag">About Us</p>
+    <h2 class="section-title">台北大安最溫柔的<br>寵物美容工作室</h2>
+    <p class="section-text">金寶貝寵物美容位於台北市大安區，由熱愛動物的專業美容師親自服務。我們相信每一隻毛孩都有自己的個性，因此採用完全安撫、不強迫的方式進行美容，讓牠們感受到家一般的溫暖。</p>
+    <p class="section-text">多年來，我們已服務數百個家庭的毛孩子，在 Google Maps 上累積了 4.8 星的真實好評，是許多大安區毛爸媽的第一選擇。</p>
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-icon">🐾</div>
+        <div class="feature-text">
+          <div class="feature-title">安撫不強迫</div>
+          全程採取溫和安撫方式，讓毛孩在舒適情緒中完成美容
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">✂️</div>
+        <div class="feature-text">
+          <div class="feature-title">專業客製修剪</div>
+          依照不同犬貓品種、毛質特性，量身打造最合適的造型
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🌿</div>
+        <div class="feature-text">
+          <div class="feature-title">溫和天然用品</div>
+          使用對毛孩皮膚友善的洗毛精與護毛素，安全無刺激
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <p class="section-tag">Gallery</p>
+    <h2 class="section-title">毛孩美容作品集</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="可愛狗狗">
+      <div class="gallery-caption">黃金獵犬 · 全身修剪</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1560743641-3914f2c45636?w=600&q=80" alt="比熊美容">
+      <div class="gallery-caption">比熊犬 · 圓球造型</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" alt="貓咪美容">
+      <div class="gallery-caption">貓咪 · 洗澡護毛</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&q=80" alt="貴賓造型">
+      <div class="gallery-caption">貴賓犬 · 泰迪造型</div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-header">
+    <p class="section-tag">Services</p>
+    <h2 class="section-title">美容服務方案</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-emoji">🛁</span>
+      <div class="service-name">洗澡 SPA</div>
+      <p class="service-desc">精選天然洗毛精，深層清潔毛髮與皮膚，洗後蓬鬆柔順，毛孩香噴噴回家。</p>
+      <div class="service-price">NT$ 600 起（依體型）</div>
+    </div>
+    <div class="service-card">
+      <span class="service-emoji">✂️</span>
+      <div class="service-name">全身修剪</div>
+      <p class="service-desc">依照品種特性與飼主需求，進行全身毛髮修剪，包含臉部、腳底、指甲清潔。</p>
+      <div class="service-price">NT$ 1,000 起（依體型）</div>
+    </div>
+    <div class="service-card">
+      <span class="service-emoji">🌸</span>
+      <div class="service-name">造型美容</div>
+      <p class="service-desc">從比熊球球頭到貴賓泰迪熊，各種流行品種造型一次完成，附精油噴霧。</p>
+      <div class="service-price">NT$ 1,500 起（依品種）</div>
+    </div>
+    <div class="service-card">
+      <span class="service-emoji">🐱</span>
+      <div class="service-name">貓咪美容</div>
+      <p class="service-desc">貓咪洗澡、梳毛、剃毛，採用貓咪友善的輕柔方式，減少緊迫，全程監控。</p>
+      <div class="service-price">NT$ 800 起（依毛量）</div>
+    </div>
+    <div class="service-card">
+      <span class="service-emoji">💅</span>
+      <div class="service-name">單項護理</div>
+      <p class="service-desc">指甲修剪、耳道清潔、肛門腺清理，單項服務也歡迎預約，細心專業處理。</p>
+      <div class="service-price">NT$ 200 起（單項）</div>
+    </div>
+    <div class="service-card">
+      <span class="service-emoji">✨</span>
+      <div class="service-name">老犬/特殊需求</div>
+      <p class="service-desc">針對高齡毛孩或美容焦慮的狗狗，提供更多耐心與特別安撫，按需求調整步驟。</p>
+      <div class="service-price">請來電詢問</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-header">
+    <p class="section-tag" style="color: var(--green);">Reviews · Google 4.8 ★</p>
+    <h2 class="section-title" style="color: var(--white);">毛爸媽的真實心得</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">「我家的柴犬超怕剪毛，去很多家都哭鬧不止，第一次來金寶貝竟然乖乖站著讓剪！美容師的安撫方式真的有一套，而且剪出來的造型超可愛！」</p>
+      <div class="testimonial-author">— 柯媽媽，台北大安</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">「帶了我的比熊去好幾家，這裡的球球頭剪得最好看！老闆娘很有耐心，每次去都會記得我家狗狗的名字和喜歡的造型，超暖心的。」</p>
+      <div class="testimonial-author">— 林先生，新北市</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">「帶貓咪去洗澡本來很擔心，結果去了之後我家主子還滿悠哉的。回家後毛超柔順，而且有一股淡淡香味，真的很推薦！」</p>
+      <div class="testimonial-author">— 陳小姐，台北信義</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <p class="section-tag">Booking</p>
+  <h2 class="section-title">預約毛孩美容</h2>
+  <p class="section-text" style="text-align:center;">歡迎填寫預約表單，或直接致電 0989-175-667 洽詢。</p>
+  <form class="contact-form" onsubmit="return false;">
+    <div class="form-row">
+      <div class="form-group">
+        <label>飼主姓名</label>
+        <input type="text" placeholder="您的稱呼">
+      </div>
+      <div class="form-group">
+        <label>聯絡電話</label>
+        <input type="tel" placeholder="0912-345-678">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>毛孩名字</label>
+        <input type="text" placeholder="毛孩的名字">
+      </div>
+      <div class="form-group">
+        <label>品種</label>
+        <input type="text" placeholder="例：貴賓、比熊、混種...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>希望預約日期</label>
+      <input type="date">
+    </div>
+    <div class="form-group">
+      <label>需要的服務</label>
+      <select>
+        <option value="">請選擇服務項目</option>
+        <option>洗澡 SPA</option>
+        <option>全身修剪</option>
+        <option>造型美容</option>
+        <option>貓咪美容</option>
+        <option>單項護理</option>
+        <option>老犬/特殊需求</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>其他備註</label>
+      <textarea placeholder="請描述毛孩的個性、特殊狀況或美容需求..."></textarea>
+    </div>
+    <button type="submit" class="btn-submit">送出預約申請</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-logo">金寶貝寵物美容</div>
+  <div>台北市大安區信義路四段 53 巷 15 號　|　<a href="tel:0989175667">0989-175-667</a></div>
+  <div>週二公休 · 其餘 11:00–20:00</div>
+  <div>© 2026 金寶貝寵物美容. All rights reserved.</div>
+</footer>
+
+<script>
+  const h = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    h.classList.toggle('scrolled', scrollY > 60);
+  });
+</script>
+</body>
+</html>

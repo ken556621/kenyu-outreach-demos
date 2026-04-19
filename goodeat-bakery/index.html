@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>穀藝 Goodeat 烘焙坊｜高雄科工館巷弄手作麵包</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --warm: #FAF5EC;
+    --cream: #F2E9D8;
+    --brown: #6B4623;
+    --wheat: #B3824C;
+    --gold: #D4A65A;
+    --dark: #1D140A;
+    --text: #6B5135;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm);
+    color: var(--dark);
+    font-weight: 300;
+  }
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  header.scrolled {
+    background: rgba(250,245,236,0.97);
+    box-shadow: 0 2px 20px rgba(29,20,10,0.1);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  header.scrolled .logo { color: var(--dark); }
+  nav { display: flex; gap: 32px; }
+  nav a {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  header.scrolled nav a { color: var(--text); }
+  nav a:hover { color: var(--gold); }
+
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    animation: zoomIn 8s ease-out forwards;
+  }
+  @keyframes zoomIn {
+    from { transform: scale(1.12); }
+    to { transform: scale(1); }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(29,20,10,0.35), rgba(29,20,10,0.7));
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    max-width: 820px;
+    padding: 0 32px;
+  }
+  .hero-year {
+    font-size: 0.78rem;
+    letter-spacing: 0.36em;
+    color: var(--gold);
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6.5vw, 5.4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 24px auto 28px;
+  }
+  .hero-desc {
+    font-size: 0.96rem;
+    line-height: 1.95;
+    opacity: 0.92;
+    margin-bottom: 44px;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary, .btn-outline {
+    display: inline-block;
+    padding: 14px 38px;
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    margin: 0 6px;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    border: 1px solid var(--gold);
+  }
+  .btn-primary:hover { background: transparent; color: var(--gold); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+  .btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .heritage {
+    background: var(--brown);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    color: rgba(255,255,255,0.7);
+  }
+  .heritage-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .heritage-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+  }
+  .heritage-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+  }
+
+  .about {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-img-wrap { position: relative; }
+  .about-img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+  }
+  .about-year-badge {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: var(--gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+  }
+  .about-year-badge .year-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+  .about-year-badge .year-small { font-size: 0.62rem; letter-spacing: 0.1em; margin-top: 4px; }
+  .section-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    color: var(--dark);
+  }
+  .section-text {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .signature-line {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #E0D4B8;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+
+  .gallery-section {
+    background: var(--dark);
+    padding: 80px 48px;
+  }
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .gallery-header .section-title { color: var(--white); }
+  .gallery-grid {
+    display: flex;
+    gap: 8px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .gallery-item {
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex 0.5s ease;
+    position: relative;
+  }
+  .gallery-item:hover { flex: 2.5; }
+  .gallery-item img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+    filter: brightness(0.88);
+  }
+  .gallery-item:hover img { transform: scale(1.04); filter: brightness(1); }
+  .gallery-label {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    color: white;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-label { opacity: 1; }
+
+  .menu {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .menu-header { text-align: center; margin-bottom: 60px; }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .menu-card { position: relative; overflow: hidden; cursor: pointer; }
+  .menu-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+  .menu-card:hover img { transform: scale(1.06); }
+  .menu-card-info {
+    padding: 20px 0;
+    border-bottom: 1px solid #E0D4B8;
+  }
+  .menu-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .menu-card-desc {
+    font-size: 0.84rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .menu-card-price {
+    font-size: 0.9rem;
+    color: var(--gold);
+    font-weight: 500;
+    margin-top: 12px;
+  }
+
+  .testimonials {
+    background: var(--brown);
+    padding: 100px 48px;
+    color: var(--white);
+  }
+  .testimonials-header { text-align: center; margin-bottom: 60px; }
+  .testimonials-header .section-title { color: var(--white); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.08);
+    padding: 36px 28px;
+    border-top: 2px solid var(--gold);
+  }
+  .stars { color: #F5C518; font-size: 1rem; margin-bottom: 14px; }
+  .testimonial-text {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 20px;
+  }
+  .testimonial-author {
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  .contact {
+    padding: 100px 48px;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 40px 0 60px;
+  }
+  .info-card {
+    padding: 28px 20px;
+    background: var(--white);
+    border-top: 2px solid var(--gold);
+    text-align: center;
+  }
+  .info-card-icon { font-size: 1.6rem; margin-bottom: 12px; }
+  .info-card-title { font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .info-card-text { font-size: 0.88rem; line-height: 1.7; color: var(--text); }
+  .contact-form { display: flex; flex-direction: column; gap: 18px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-align: left;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 18px;
+    border: 1px solid #E0D4B8;
+    background: var(--white);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { height: 110px; resize: vertical; }
+  .btn-submit {
+    padding: 16px;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn-submit:hover { background: var(--brown); }
+
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.45);
+    padding: 56px 48px 40px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: 0.08em;
+  }
+  .footer-sub {
+    font-size: 0.76rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+  .footer-info {
+    font-size: 0.82rem;
+    line-height: 2;
+    margin-bottom: 28px;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  .footer-copy { font-size: 0.76rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 8px; }
+
+  @media (max-width: 768px) {
+    header { padding: 20px 24px; }
+    nav { display: none; }
+    .heritage { flex-wrap: wrap; gap: 32px; padding: 24px; justify-content: flex-start; }
+    .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 50px; }
+    .about-year-badge { display: none; }
+    .gallery-section { padding: 60px 24px; }
+    .gallery-grid { flex-direction: column; }
+    .gallery-item, .gallery-item:hover { flex: none; }
+    .gallery-item img { height: 240px; }
+    .menu { padding: 60px 24px; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .testimonials { padding: 60px 24px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact { padding: 60px 24px; }
+    .contact-info { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 48px 24px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <a class="logo" href="#">Goodeat · 穀藝</a>
+  <nav>
+    <a href="#about">關於穀藝</a>
+    <a href="#gallery">麵包風景</a>
+    <a href="#menu">招牌品項</a>
+    <a href="#testimonials">客人分享</a>
+    <a href="#contact">下週預定</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-year">Goodeat Bakery · 高雄三民 · 科工館巷弄</p>
+    <h1 class="hero-title">一週只開四天<br>出爐即售完</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">嚴選日本與法國麵粉、百分百 Lescure AOP 發酵奶油、履歷雞蛋。穀藝烘焙坊是高雄科工館附近巷弄裡的寶藏小店——數量有限、預訂為王，是老客人口中最安心的那一口。</p>
+    <a href="#menu" class="btn-primary">看本週品項</a>
+    <a href="#contact" class="btn-outline">下週預定</a>
+  </div>
+</section>
+
+<div class="heritage">
+  <div class="heritage-item">
+    <div class="heritage-num">4天</div>
+    <div class="heritage-label">每週營業<br>日數</div>
+  </div>
+  <div class="heritage-item">
+    <div class="heritage-num">100%</div>
+    <div class="heritage-label">AOP 發酵奶油<br>Lescure</div>
+  </div>
+  <div class="heritage-item">
+    <div class="heritage-num">1次</div>
+    <div class="heritage-label">每日僅<br>出爐一次</div>
+  </div>
+  <div class="heritage-item">
+    <div class="heritage-num">每週六</div>
+    <div class="heritage-label">公告<br>下週品項</div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-img-wrap">
+    <img class="about-img" src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=800&q=80" alt="穀藝烘焙坊手作麵包">
+    <div class="about-year-badge">
+      <div class="year-big">穀藝</div>
+      <div class="year-small">Goodeat</div>
+    </div>
+  </div>
+  <div>
+    <p class="section-tag">Our Story</p>
+    <h2 class="section-title">巷弄裡的寶藏<br>科工館旁的小烘焙坊</h2>
+    <p class="section-text">穀藝烘焙坊藏在高雄三民區延吉街的巷弄內，離科工館只要幾步路。一週只營業四天、每天只出爐一次、每一款都限量——這樣的步調，是為了把每顆麵包都做到心中滿意為止。</p>
+    <p class="section-text">我們堅持使用嚴選的日本麵粉、法國麵粉、百分百 Lescure 萊思克 AOP 發酵奶油、履歷認證雞蛋，讓每一位把麵包帶回家的人都能安心吃。</p>
+    <p class="section-text">每週六晚間會在 FB 粉絲頁公告下週販售品項，熟客都知道：要吃想吃的口味，一定要提前預訂。</p>
+    <div class="signature-line">
+      「用料堅持一點，每一口都有新鮮感。」
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <p class="section-tag" style="color: var(--gold);">Gallery</p>
+    <h2 class="section-title">麵包風景</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80" alt="奶油鹽可頌">
+      <div class="gallery-label">奶油鹽可頌</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=600&q=80" alt="歐式麵包">
+      <div class="gallery-label">歐式麵包</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=600&q=80" alt="出爐時刻">
+      <div class="gallery-label">出爐時刻</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1600289031464-74d374b64991?w=600&q=80" alt="烘焙工作室">
+      <div class="gallery-label">職人工作室</div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="menu-header">
+    <p class="section-tag">Signature Bakes</p>
+    <h2 class="section-title">招牌必吃品項</h2>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80" alt="奶油鹽可頌">
+      <div class="menu-card-info">
+        <div class="menu-card-name">奶油鹽可頌</div>
+        <p class="menu-card-desc">外酥內層層分明，100% Lescure AOP 發酵奶油的香氣，吃完會立刻想再訂一個。</p>
+        <div class="menu-card-price">最搶手</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80" alt="覆盆子小花">
+      <div class="menu-card-info">
+        <div class="menu-card-name">覆盆子小花</div>
+        <p class="menu-card-desc">酸甜覆盆子搭配軟綿甜麵團，造型討喜、滋味清新，是少女心裡的 No.1。</p>
+        <div class="menu-card-price">限量出爐</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=600&q=80" alt="松露培根乾酪法國">
+      <div class="menu-card-info">
+        <div class="menu-card-name">松露培根乾酪法國</div>
+        <p class="menu-card-desc">濃郁松露香氣、北義培根與乾酪融合在手感厚實的法國麵包中，鹹香非常下酒。</p>
+        <div class="menu-card-price">熟客必點</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=600&q=80" alt="布里歐吐司">
+      <div class="menu-card-info">
+        <div class="menu-card-name">布里歐吐司</div>
+        <p class="menu-card-desc">濃郁蛋奶香、質地柔軟回彈，回家直接吃或烤一下夾果醬都是人間美味。</p>
+        <div class="menu-card-price">家庭最愛</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1534620808146-d33bb39128b2?w=600&q=80" alt="季節限定">
+      <div class="menu-card-info">
+        <div class="menu-card-name">季節限定款</div>
+        <p class="menu-card-desc">每週會上架兩到三款季節款式，FB 粉專會公告，想吃記得提早預訂。</p>
+        <div class="menu-card-price">週更新</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?w=600&q=80" alt="自家烘焙咖啡">
+      <div class="menu-card-info">
+        <div class="menu-card-name">自家烘焙咖啡</div>
+        <p class="menu-card-desc">除了麵包，我們也有自家烘焙的精品咖啡豆，買一袋回家，讓早餐更完整。</p>
+        <div class="menu-card-price">自家咖啡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-header">
+    <p class="section-tag" style="color: var(--gold);">Customer Love</p>
+    <h2 class="section-title">老客人的回購理由</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">「奶油鹽可頌真的是我吃過最好吃的！每次都要事先預訂，沒有預訂就吃不到。老闆用料很實在，包裝也很用心。」</p>
+      <div class="testimonial-author">— 陳小姐 · 科工館熟客</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">「松露培根乾酪法國很驚豔，口感厚實、香氣十足。週六看到粉專公告就要立刻訂，晚一步就沒了，這是穀藝的日常。」</p>
+      <div class="testimonial-author">— 林先生 · 高雄美食社團</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">「巷弄裡的小小烘焙坊，卻能吃到像日法甜點店等級的麵包。覆盆子小花是女兒每週點名要的，老闆真的很用心。」</p>
+      <div class="testimonial-author">— 黃太太 · 親子媽媽團</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <p class="section-tag">Order · Visit</p>
+  <h2 class="section-title">預定下週的麵包</h2>
+  <p class="section-text" style="text-align:center;">每週六晚間粉專會公告下週品項；建議提前 1–2 天私訊預訂，以免向隅。</p>
+  <div class="contact-info">
+    <div class="info-card">
+      <div class="info-card-icon">📍</div>
+      <div class="info-card-title">地址</div>
+      <div class="info-card-text">高雄市三民區<br>延吉街 63 巷 13 號<br>（近科工館）</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🕐</div>
+      <div class="info-card-title">營業時間</div>
+      <div class="info-card-text">一、三、五 14:30–20:00<br>週日 14:30–19:00<br>二、四、六 公休</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">📞</div>
+      <div class="info-card-title">電話 · 預訂</div>
+      <div class="info-card-text"><a href="tel:073983860" style="color: var(--gold);">07-398-3860</a><br><br>FB / IG: goodeatbakery</div>
+    </div>
+  </div>
+  <form class="contact-form" onsubmit="return false;">
+    <div class="form-row">
+      <div class="form-group">
+        <label>姓名</label>
+        <input type="text" placeholder="您的稱呼">
+      </div>
+      <div class="form-group">
+        <label>聯絡電話</label>
+        <input type="tel" placeholder="09XX-XXX-XXX">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>取貨日</label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label>取貨時段</label>
+        <select>
+          <option>14:30–16:00</option>
+          <option>16:00–18:00</option>
+          <option>18:00–20:00</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>預訂品項</label>
+      <textarea placeholder="例：奶油鹽可頌 x3、覆盆子小花 x2..."></textarea>
+    </div>
+    <button type="submit" class="btn-submit">送出預訂</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-logo">Goodeat · 穀藝</div>
+  <div class="footer-sub">高雄科工館 · 巷弄手作烘焙</div>
+  <div class="footer-info">
+    高雄市三民區延吉街 63 巷 13 號　|　<a href="tel:073983860">07-398-3860</a><br>
+    一三五 14:30–20:00 · 日 14:30–19:00 · 二四六公休
+  </div>
+  <div class="footer-copy">© 2026 穀藝 Goodeat Bakery. All rights reserved.</div>
+</footer>
+
+<script>
+  const h = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    h.classList.toggle('scrolled', scrollY > 60);
+  });
+</script>
+</body>
+</html>

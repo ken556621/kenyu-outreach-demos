@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>沐沐寵物沙龍 ｜ 中山區專業寵物美容</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --warm:#FFF8F0;
+    --cream:#F8EFE0;
+    --green:#7A9E7E;
+    --green-dark:#556B4F;
+    --brown:#8B6914;
+    --gold:#D4A84B;
+    --dark:#1F1A0E;
+    --text:#2E281B;
+    --line:rgba(122,158,126,0.2);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--warm);line-height:1.7;font-weight:300}
+  h1,h2,h3,.en{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:.02em}
+  img{max-width:100%;display:block}
+
+  /* HEADER */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 50px;display:flex;justify-content:space-between;align-items:center;transition:all .4s ease;background:transparent}
+  header.scrolled{background:rgba(255,248,240,.97);box-shadow:0 1px 12px rgba(0,0,0,.06);padding:14px 50px}
+  header .logo{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;letter-spacing:.1em;transition:color .4s}
+  header.scrolled .logo{color:var(--green-dark)}
+  header nav a{color:#fff;text-decoration:none;margin-left:36px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;transition:color .4s}
+  header.scrolled nav a{color:var(--text)}
+  header nav a:hover{color:var(--gold)}
+
+  /* HERO */
+  .hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
+  .hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1920&q=80') center/cover;animation:zoomIn 22s ease-in-out infinite alternate;z-index:-2}
+  .hero::after{content:'';position:absolute;inset:0;background:rgba(31,26,14,.38);z-index:-1}
+  @keyframes zoomIn{from{transform:scale(1)}to{transform:scale(1.14)}}
+  .hero-content{max-width:780px;padding:0 30px}
+  .hero .en{font-size:14px;letter-spacing:.5em;text-transform:uppercase;margin-bottom:28px;opacity:.9}
+  .hero h1{font-size:70px;line-height:1.1;margin-bottom:28px;font-weight:300}
+  .hero p{font-size:16px;letter-spacing:.2em;opacity:.92}
+  .hero .scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.4em;opacity:.7}
+  .star-row{margin-top:32px;font-size:14px;letter-spacing:.15em;opacity:.95}
+  .star-row .stars{color:var(--gold);letter-spacing:.1em;margin-right:10px}
+
+  /* SECTIONS */
+  section{padding:120px 50px}
+  .section-label{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.5em;text-transform:uppercase;color:var(--brown);margin-bottom:22px;text-align:center}
+  .section-title{font-size:50px;text-align:center;margin-bottom:66px;color:var(--green-dark)}
+
+  /* ABOUT */
+  .about{background:var(--warm)}
+  .about-wrap{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .about-text .big{font-size:28px;line-height:1.5;color:var(--green-dark);font-family:'Cormorant Garamond',serif;margin-bottom:28px}
+  .about-text p{margin-bottom:18px;font-size:15px;color:#403725}
+  .about-img{height:480px;background:url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=900&q=80') center/cover}
+
+  /* GALLERY */
+  .gallery{background:var(--cream)}
+  .gal-grid{display:flex;gap:10px;height:460px;max-width:1280px;margin:0 auto}
+  .gal-item{flex:1;background-size:cover;background-position:center;transition:flex .6s ease;cursor:pointer;position:relative;overflow:hidden}
+  .gal-item:hover{flex:3}
+  .gal-item::after{content:'';position:absolute;inset:0;background:rgba(31,26,14,.15);transition:opacity .4s}
+  .gal-item:hover::after{opacity:0}
+
+  /* PACKAGES */
+  .packages{background:var(--warm)}
+  .pkg-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .pkg-card{padding:42px 34px;background:#fff;border:1px solid var(--line);text-align:center;transition:transform .4s,box-shadow .4s}
+  .pkg-card:hover{transform:translateY(-8px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
+  .pkg-card .en{font-size:13px;letter-spacing:.4em;color:var(--brown);margin-bottom:14px;text-transform:uppercase}
+  .pkg-card h3{font-size:30px;color:var(--green-dark);margin-bottom:18px}
+  .pkg-card .price{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);margin-bottom:24px}
+  .pkg-card ul{list-style:none;text-align:left}
+  .pkg-card li{padding:10px 0;border-bottom:1px dashed var(--line);font-size:14px;color:#5a4e36}
+  .pkg-card li::before{content:'✽';color:var(--green);margin-right:10px}
+
+  /* TESTIMONIAL */
+  .testimonial{background:var(--green-dark);color:#fff;text-align:center}
+  .testimonial .section-title{color:#fff}
+  .testimonial .section-label{color:var(--gold)}
+  .quote{max-width:700px;margin:0 auto;font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;line-height:1.7;opacity:.95}
+  .quote::before,.quote::after{content:'"';font-size:46px;color:var(--gold);vertical-align:middle}
+  .quote-author{margin-top:28px;font-size:13px;letter-spacing:.3em;opacity:.8;text-transform:uppercase}
+
+  /* CONTACT */
+  .contact{background:var(--cream)}
+  .contact-wrap{max-width:920px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  .contact-info p{font-size:14px;margin-bottom:12px;color:#3b3322}
+  .contact-info .label{font-size:11px;letter-spacing:.3em;color:var(--brown);margin-top:22px;margin-bottom:6px;text-transform:uppercase;font-family:'Cormorant Garamond',serif}
+  form{display:flex;flex-direction:column;gap:16px}
+  form input,form textarea,form select{padding:14px 18px;border:1px solid var(--line);background:rgba(255,255,255,.7);font-family:inherit;font-size:14px;color:var(--text);outline:none;transition:border .3s}
+  form input:focus,form textarea:focus,form select:focus{border-color:var(--gold)}
+  form textarea{min-height:110px;resize:vertical}
+  form button{padding:16px;background:var(--green-dark);color:#fff;border:none;letter-spacing:.3em;cursor:pointer;font-size:13px;font-family:'Cormorant Garamond',serif;text-transform:uppercase;transition:background .3s}
+  form button:hover{background:var(--dark)}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:#b8a978;padding:50px;text-align:center;font-size:13px;letter-spacing:.12em}
+  footer .logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);margin-bottom:14px;letter-spacing:.12em}
+
+  @media(max-width:800px){
+    header{padding:18px 24px}
+    header nav{display:none}
+    section{padding:80px 24px}
+    .hero h1{font-size:46px}
+    .section-title{font-size:36px}
+    .about-wrap,.contact-wrap{grid-template-columns:1fr}
+    .pkg-grid{grid-template-columns:1fr}
+    .gal-grid{flex-direction:column;height:auto}
+    .gal-item{height:220px}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="logo">Mumu Pet Salon</div>
+  <nav>
+    <a href="#about">關於</a>
+    <a href="#gallery">環境</a>
+    <a href="#packages">方案</a>
+    <a href="#contact">預約</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="en">Pet Grooming Salon &middot; Zhongshan Taipei</div>
+    <h1>沐沐寵物沙龍</h1>
+    <p>高規格環境　超值服務　合理平價</p>
+    <div class="star-row"><span class="stars">★★★★★</span> Google 4.8 · 62 則真實評論</div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-label">About</div>
+  <h2 class="section-title">給毛小孩一段溫柔時光</h2>
+  <div class="about-wrap">
+    <div class="about-text">
+      <p class="big">預約優先、每日限量，只為讓每隻毛孩享受專屬的美容時光。</p>
+      <p>沐沐寵物沙龍座落在中山區吉林路上，是一間由老闆娘親自照料、堅持全預約制的小型美容工作室。</p>
+      <p>我們不追求快速流水線，而是每一位毛孩都有專屬的空間與時間，讓洗澡、剪毛變成牠們信任、甚至期待的事。</p>
+      <p>從選用溫和的清潔用品、到一次一隻不互相影響的作業流程，我們只希望把「舒服」兩個字做到最好。</p>
+    </div>
+    <div class="about-img"></div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="section-label">Our Space</div>
+  <h2 class="section-title">乾淨明亮的空間</h2>
+  <div class="gal-grid">
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1587764379873-97837921fd44?w=800&q=80')"></div>
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=800&q=80')"></div>
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800&q=80')"></div>
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800&q=80')"></div>
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1600077106724-946750eeaf3c?w=800&q=80')"></div>
+  </div>
+</section>
+
+<section class="packages" id="packages">
+  <div class="section-label">Packages</div>
+  <h2 class="section-title">服務方案</h2>
+  <div class="pkg-grid">
+    <div class="pkg-card">
+      <div class="en">Basic Bath</div>
+      <h3>基礎洗澡</h3>
+      <div class="price">NT 600+</div>
+      <ul>
+        <li>全身清潔、去污</li>
+        <li>擠肛門腺</li>
+        <li>清耳、剪指甲</li>
+        <li>基本吹整</li>
+      </ul>
+    </div>
+    <div class="pkg-card">
+      <div class="en">Full Grooming</div>
+      <h3>完整美容</h3>
+      <div class="price">NT 1,200+</div>
+      <ul>
+        <li>含基礎洗澡所有項目</li>
+        <li>全身剃刀造型</li>
+        <li>臉部修飾、腳底除毛</li>
+        <li>精油護毛</li>
+      </ul>
+    </div>
+    <div class="pkg-card">
+      <div class="en">Spa Care</div>
+      <h3>舒壓 SPA</h3>
+      <div class="price">NT 1,800+</div>
+      <ul>
+        <li>完整美容所有項目</li>
+        <li>藥浴調理</li>
+        <li>溫泉按摩舒壓</li>
+        <li>皮毛深層滋養</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="section-label">Voice</div>
+  <h2 class="section-title">飼主的話</h2>
+  <p class="quote">環境超乾淨、老闆娘超 nice，每次接狗狗回家都能感覺牠很開心。價錢也非常合理，是真心推薦的一間店。</p>
+  <div class="quote-author">— Google 評論 · 4.8 顆星（62 則）</div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-label">Book Now</div>
+  <h2 class="section-title">預約看看</h2>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div class="label">Address</div>
+      <p>台北市中山區吉林路 265 號</p>
+      <div class="label">Phone</div>
+      <p>02-2563-9995</p>
+      <div class="label">Reservation</div>
+      <p>Line ID：mumu12250 ／ 0905-328-007</p>
+      <div class="label">Hours</div>
+      <p>週四至週二 10:00 – 19:00（週三公休）</p>
+      <div class="label">Facebook</div>
+      <p>facebook.com/mupetsalon</p>
+    </div>
+    <form onsubmit="event.preventDefault();alert('謝謝您，我們會盡快與您聯繫預約時段～');this.reset();">
+      <input type="text" placeholder="飼主姓名" required>
+      <input type="tel" placeholder="聯絡電話" required>
+      <select required>
+        <option value="">毛孩品種 / 體型</option>
+        <option>小型犬（10kg 以下）</option>
+        <option>中型犬（10-25kg）</option>
+        <option>大型犬（25kg 以上）</option>
+        <option>貓咪</option>
+      </select>
+      <textarea placeholder="希望預約的時段或特殊需求..." required></textarea>
+      <button type="submit">送出預約</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Mumu Pet Salon 沐沐寵物沙龍</div>
+  <p>高規格環境 · 超值服務 · 合理平價</p>
+  <p style="margin-top:16px;opacity:.6">&copy; 2026 沐沐寵物沙龍 &middot; 中山區吉林路 265 號</p>
+</footer>
+
+<script>
+  const h=document.getElementById('header');
+  window.addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>60));
+</script>
+</body>
+</html>

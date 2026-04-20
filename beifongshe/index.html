@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>北風社 ｜ 赤峰街老宅咖啡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --warm:#FBF8F4;
+    --cream:#F2ECE2;
+    --brown:#5C3A1E;
+    --gold:#C8956C;
+    --dark:#1A1008;
+    --text:#2B2118;
+    --line:rgba(92,58,30,0.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--warm);line-height:1.7;font-weight:300}
+  h1,h2,h3,.en{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:.02em}
+  img{max-width:100%;display:block}
+
+  /* HEADER */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 50px;display:flex;justify-content:space-between;align-items:center;transition:all .4s ease;background:transparent}
+  header.scrolled{background:rgba(251,248,244,.96);box-shadow:0 1px 12px rgba(0,0,0,.06);padding:14px 50px}
+  header .logo{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;letter-spacing:.12em;transition:color .4s}
+  header.scrolled .logo{color:var(--brown)}
+  header nav a{color:#fff;text-decoration:none;margin-left:36px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;transition:color .4s}
+  header.scrolled nav a{color:var(--text)}
+  header nav a:hover{color:var(--gold)}
+
+  /* HERO */
+  .hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
+  .hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80') center/cover;animation:zoomIn 20s ease-in-out infinite alternate;z-index:-2}
+  .hero::after{content:'';position:absolute;inset:0;background:rgba(26,16,8,.42);z-index:-1}
+  @keyframes zoomIn{from{transform:scale(1)}to{transform:scale(1.12)}}
+  .hero-content{max-width:760px;padding:0 30px}
+  .hero .en{font-size:14px;letter-spacing:.5em;text-transform:uppercase;margin-bottom:30px;opacity:.9}
+  .hero h1{font-size:72px;line-height:1.1;margin-bottom:28px;font-weight:300}
+  .hero p{font-size:16px;letter-spacing:.22em;opacity:.92}
+  .hero .scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.4em;opacity:.7}
+
+  /* SECTIONS */
+  section{padding:120px 50px}
+  .section-label{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;text-align:center}
+  .section-title{font-size:52px;text-align:center;margin-bottom:72px;color:var(--brown)}
+
+  /* ABOUT */
+  .about{background:var(--warm)}
+  .about-wrap{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .about-text p{margin-bottom:20px;font-size:15px;color:#3b2f25}
+  .about-text .big{font-size:28px;line-height:1.5;color:var(--brown);font-family:'Cormorant Garamond',serif;margin-bottom:30px}
+  .about-img{height:460px;background:url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=900&q=80') center/cover;border-radius:2px}
+
+  /* GALLERY */
+  .gallery{background:var(--cream)}
+  .gal-grid{display:flex;gap:10px;height:460px;max-width:1280px;margin:0 auto}
+  .gal-item{flex:1;background-size:cover;background-position:center;transition:flex .6s ease;cursor:pointer;position:relative;overflow:hidden}
+  .gal-item:hover{flex:3}
+  .gal-item::after{content:'';position:absolute;inset:0;background:rgba(26,16,8,.18);transition:opacity .4s}
+  .gal-item:hover::after{opacity:0}
+
+  /* MENU */
+  .menu{background:var(--warm)}
+  .menu-grid{max-width:920px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:28px 60px}
+  .menu-item{border-bottom:1px dashed var(--line);padding-bottom:20px}
+  .menu-item .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .menu-item .name{font-size:18px;color:var(--brown);font-weight:500}
+  .menu-item .price{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold)}
+  .menu-item .desc{font-size:13px;color:#6d5a48;letter-spacing:.05em}
+
+  /* TESTIMONIAL */
+  .testimonial{background:var(--brown);color:#fff;text-align:center}
+  .testimonial .section-title{color:#fff}
+  .testimonial .section-label{color:var(--gold)}
+  .quote{max-width:680px;margin:0 auto;font-family:'Cormorant Garamond',serif;font-size:26px;font-style:italic;line-height:1.7;opacity:.95}
+  .quote::before,.quote::after{content:'"';font-size:46px;color:var(--gold);vertical-align:middle}
+  .quote-author{margin-top:28px;font-size:13px;letter-spacing:.3em;opacity:.8;text-transform:uppercase}
+
+  /* CONTACT */
+  .contact{background:var(--cream)}
+  .contact-wrap{max-width:920px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  .contact-info p{font-size:14px;margin-bottom:12px;color:#3b2f25}
+  .contact-info .label{font-size:11px;letter-spacing:.3em;color:var(--gold);margin-top:22px;margin-bottom:6px;text-transform:uppercase;font-family:'Cormorant Garamond',serif}
+  form{display:flex;flex-direction:column;gap:16px}
+  form input,form textarea{padding:14px 18px;border:1px solid var(--line);background:rgba(255,255,255,.6);font-family:inherit;font-size:14px;color:var(--text);outline:none;transition:border .3s}
+  form input:focus,form textarea:focus{border-color:var(--gold)}
+  form textarea{min-height:120px;resize:vertical}
+  form button{padding:16px;background:var(--brown);color:#fff;border:none;letter-spacing:.3em;cursor:pointer;font-size:13px;font-family:'Cormorant Garamond',serif;text-transform:uppercase;transition:background .3s}
+  form button:hover{background:var(--dark)}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:#a89585;padding:50px;text-align:center;font-size:13px;letter-spacing:.12em}
+  footer .logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);margin-bottom:14px;letter-spacing:.12em}
+  footer a{color:#a89585;text-decoration:none}
+
+  @media(max-width:800px){
+    header{padding:18px 24px}
+    header nav{display:none}
+    section{padding:80px 24px}
+    .hero h1{font-size:48px}
+    .section-title{font-size:38px}
+    .about-wrap,.contact-wrap,.menu-grid{grid-template-columns:1fr}
+    .gal-grid{flex-direction:column;height:auto}
+    .gal-item{height:220px}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="logo">BeiFongShe</div>
+  <nav>
+    <a href="#about">關於</a>
+    <a href="#gallery">空間</a>
+    <a href="#menu">菜單</a>
+    <a href="#contact">聯絡</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="en">Coffee &middot; Old House &middot; Since 2017</div>
+    <h1>北風社</h1>
+    <p>北方吹來的風，讓喜歡的事找到歸屬</p>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-label">About Us</div>
+  <h2 class="section-title">老宅裡的一段時光</h2>
+  <div class="about-wrap">
+    <div class="about-text">
+      <p class="big">藏身赤峰街 47 巷的二樓，一間手作改造的老宅咖啡。</p>
+      <p>主理人親手翻修了這棟荒廢屋，保留原有的台式復古格局，在挑高的木造空間裡，留下一塊吧檯、一張長桌、一片榻榻米座位區。</p>
+      <p>這裡沒有繁複的裝飾，只有手沖咖啡、自製甜點、三明治，以及偶爾的音樂與電影放映。是城市裡一個讓人可以慢下來的地方。</p>
+    </div>
+    <div class="about-img"></div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="section-label">Our Space</div>
+  <h2 class="section-title">空間一隅</h2>
+  <div class="gal-grid">
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=800&q=80')"></div>
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=80')"></div>
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80')"></div>
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80')"></div>
+    <div class="gal-item" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80')"></div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="section-label">Menu</div>
+  <h2 class="section-title">手沖 &middot; 甜點 &middot; 輕食</h2>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <div class="row"><span class="name">手沖單品咖啡</span><span class="price">180</span></div>
+      <div class="desc">每日輪換莊園豆，由主理人親手沖煮</div>
+    </div>
+    <div class="menu-item">
+      <div class="row"><span class="name">拿鐵</span><span class="price">150</span></div>
+      <div class="desc">用義式濃縮搭配綿密奶泡</div>
+    </div>
+    <div class="menu-item">
+      <div class="row"><span class="name">手作三明治</span><span class="price">200</span></div>
+      <div class="desc">當日新鮮麵包、簡單食材的溫柔組合</div>
+    </div>
+    <div class="menu-item">
+      <div class="row"><span class="name">每日甜點</span><span class="price">120</span></div>
+      <div class="desc">季節水果塔、焦糖布丁、磅蛋糕輪替</div>
+    </div>
+    <div class="menu-item">
+      <div class="row"><span class="name">熱可可</span><span class="price">160</span></div>
+      <div class="desc">濃郁巧克力粉，適合冬日的一杯</div>
+    </div>
+    <div class="menu-item">
+      <div class="row"><span class="name">冰滴咖啡</span><span class="price">200</span></div>
+      <div class="desc">十二小時慢滴，夏天最棒的清醒</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="section-label">Voice</div>
+  <h2 class="section-title">客人說</h2>
+  <p class="quote">在赤峰街走著走著，就被二樓的木質窗花吸引了。坐下來喝了一杯單品，感覺時間都慢了下來。是會想一來再來的地方。</p>
+  <div class="quote-author">— Google 評論 · 4.5 顆星</div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-label">Visit Us</div>
+  <h2 class="section-title">歡迎光臨</h2>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div class="label">Address</div>
+      <p>台北市大同區赤峰街 47 巷 18 號 2 樓</p>
+      <div class="label">Phone</div>
+      <p>02-2559-4019</p>
+      <div class="label">Hours</div>
+      <p>週一至週日 13:00 – 00:00（週四公休）</p>
+      <div class="label">Facebook</div>
+      <p>facebook.com/BeiFongShe</p>
+    </div>
+    <form onsubmit="event.preventDefault();alert('感謝來信，我們將盡快回覆您～');this.reset();">
+      <input type="text" placeholder="姓名 Your Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="想和我們說的話..." required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">BeiFongShe 北風社</div>
+  <p>北方吹來的風，讓所有喜歡的事找到歸屬</p>
+  <p style="margin-top:16px;opacity:.6">&copy; 2026 北風社 &middot; 赤峰街 47 巷 18 號 2 樓</p>
+</footer>
+
+<script>
+  const h=document.getElementById('header');
+  window.addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>60));
+</script>
+</body>
+</html>

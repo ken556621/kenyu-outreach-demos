@@ -22,7 +22,8 @@
     padding: 20px 40px;
     display: flex; justify-content: space-between; align-items: center;
     transition: background 0.4s, box-shadow 0.4s;
-    background: transparent;
+    background: rgba(250, 247, 242, 0.82);
+    backdrop-filter: blur(10px);
   }
   header.scrolled {
     background: rgba(250, 247, 242, 0.97);
@@ -31,12 +32,12 @@
   .logo {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.5rem; font-weight: 600; letter-spacing: 0.05em;
-    color: var(--cream); text-decoration: none; transition: color 0.4s;
+    color: var(--dark); text-decoration: none; transition: color 0.4s;
   }
   header.scrolled .logo { color: var(--dark); }
   nav a {
     font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--cream); text-decoration: none; margin-left: 30px;
+    color: var(--gray); text-decoration: none; margin-left: 30px;
     transition: color 0.3s; font-weight: 400;
   }
   header.scrolled nav a { color: var(--gray); }

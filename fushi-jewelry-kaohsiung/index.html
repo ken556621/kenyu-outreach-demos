@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福西珠寶 | 高雄苓雅 鑽石・金飾・傳家寶物</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --gold: #C9A84C;
+    --dark: #1A1508;
+    --gray: #6B6457;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans TC', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.7; }
+
+  /* HEADER */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.4s, box-shadow 0.4s;
+    background: transparent;
+  }
+  header.scrolled {
+    background: rgba(250, 247, 242, 0.97);
+    box-shadow: 0 1px 20px rgba(26, 21, 8, 0.08);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--cream); text-decoration: none; transition: color 0.4s;
+  }
+  header.scrolled .logo { color: var(--dark); }
+  nav a {
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--cream); text-decoration: none; margin-left: 30px;
+    transition: color 0.3s; font-weight: 400;
+  }
+  header.scrolled nav a { color: var(--gray); }
+  nav a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    position: relative; height: 100vh; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1920&q=80') center/cover no-repeat;
+    animation: zoomIn 12s ease-out forwards;
+    filter: brightness(0.85);
+  }
+  @keyframes zoomIn {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.0); }
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(26,21,8,0.65) 0%, rgba(26,21,8,0.3) 100%);
+  }
+  .hero-content { position: relative; z-index: 1; color: #fff; padding: 0 20px; }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px; display: block;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.15; margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 1rem; font-weight: 300; opacity: 0.88; max-width: 480px; margin: 0 auto 36px;
+  }
+  .btn {
+    display: inline-block; padding: 14px 38px;
+    border: 1.5px solid var(--gold); color: var(--gold);
+    text-decoration: none; font-size: 0.8rem; letter-spacing: 0.2em;
+    text-transform: uppercase; transition: all 0.3s; font-family: 'Noto Sans TC', sans-serif;
+  }
+  .btn:hover { background: var(--gold); color: var(--dark); }
+  .btn-solid { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .btn-solid:hover { background: #b8913d; border-color: #b8913d; }
+
+  /* SECTION BASE */
+  section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px; display: block;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 3.5vw, 3rem); font-weight: 400; line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .divider { width: 50px; height: 1.5px; background: var(--gold); margin: 28px 0; }
+
+  /* STORY - 兩欄反向 */
+  .story { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .story-img {
+    aspect-ratio: 4/5; overflow: hidden;
+    background: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=80') center/cover;
+    order: 2;
+  }
+  .story-text { order: 1; }
+  .story-text p { color: var(--gray); margin-bottom: 16px; font-size: 0.97rem; line-height: 1.9; }
+
+  /* HIGHLIGHT STRIP */
+  .highlight-strip {
+    background: var(--dark); padding: 40px; text-align: center;
+    display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;
+  }
+  .highlight-item { color: var(--cream); text-align: center; }
+  .highlight-item .num {
+    font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--gold);
+    display: block; line-height: 1;
+  }
+  .highlight-item span:last-child { font-size: 0.82rem; letter-spacing: 0.1em; opacity: 0.7; }
+
+  /* PRODUCTS */
+  .products-section { background: #EDE8DF; padding: 100px 40px; }
+  .products-inner { max-width: 1200px; margin: 0 auto; }
+  .products-header { text-align: center; margin-bottom: 60px; }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .product-card { background: var(--cream); overflow: hidden; transition: transform 0.3s; }
+  .product-card:hover { transform: translateY(-4px); }
+  .product-img { aspect-ratio: 1; overflow: hidden; }
+  .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .product-card:hover .product-img img { transform: scale(1.05); }
+  .product-info { padding: 22px 20px; }
+  .product-info h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;
+  }
+  .product-info p { color: var(--gray); font-size: 0.87rem; line-height: 1.7; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+  .service-item { padding: 40px 28px; background: #F5F0E8; transition: box-shadow 0.3s; }
+  .service-item:hover { box-shadow: 0 8px 30px rgba(26,21,8,0.08); }
+  .service-icon { font-size: 2rem; margin-bottom: 18px; }
+  .service-item h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 12px;
+  }
+  .service-item p { color: var(--gray); font-size: 0.9rem; line-height: 1.75; }
+
+  /* TESTIMONIALS */
+  .testimonials-section { background: var(--dark); padding: 100px 40px; }
+  .testimonials-inner { max-width: 1200px; margin: 0 auto; }
+  .testimonials-inner .section-label { color: var(--gold); }
+  .testimonials-inner h2 { color: var(--cream); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+  .testimonial-card { padding: 32px 26px; border-top: 2px solid var(--gold); }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
+  .testimonial-card p { color: rgba(250,247,242,0.78); font-size: 0.9rem; line-height: 1.85; font-style: italic; margin-bottom: 18px; }
+  .reviewer { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em; }
+
+  /* CONTACT */
+  .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-detail { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid rgba(201,168,76,0.2); }
+  .contact-detail:last-of-type { border-bottom: none; margin-bottom: 0; }
+  .contact-detail .icon { color: var(--gold); font-size: 1.1rem; margin-top: 2px; }
+  .contact-detail .text { font-size: 0.93rem; color: var(--gray); }
+  .contact-detail .text strong { color: var(--dark); display: block; margin-bottom: 2px; font-weight: 500; }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    width: 100%; padding: 14px 18px;
+    border: 1px solid rgba(107,100,87,0.3); background: transparent;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 0.92rem; color: var(--dark);
+    outline: none; transition: border-color 0.3s;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--gold); }
+  .contact-form textarea { height: 120px; resize: vertical; }
+  .contact-form button {
+    padding: 14px; background: var(--gold); border: none; cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.15em; color: var(--dark); text-transform: uppercase; transition: background 0.3s;
+  }
+  .contact-form button:hover { background: #b8913d; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark); color: rgba(250,247,242,0.6);
+    padding: 50px 40px; text-align: center; font-size: 0.85rem;
+  }
+  footer .footer-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
+    color: var(--cream); margin-bottom: 14px; display: block;
+  }
+  footer .footer-links { margin: 18px 0; }
+  footer .footer-links a { color: var(--gold); margin: 0 12px; text-decoration: none; font-size: 0.82rem; }
+  footer p { opacity: 0.55; font-size: 0.78rem; margin-top: 18px; }
+
+  @media (max-width: 768px) {
+    header { padding: 16px 20px; }
+    nav { display: none; }
+    section { padding: 70px 20px; }
+    .story { grid-template-columns: 1fr; gap: 40px; }
+    .story-img { order: 1; } .story-text { order: 2; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-section { grid-template-columns: 1fr; gap: 40px; }
+    .products-section, .testimonials-section { padding: 70px 20px; }
+    .highlight-strip { gap: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="mainHeader">
+  <a href="#" class="logo">福西珠寶</a>
+  <nav>
+    <a href="#story">品牌故事</a>
+    <a href="#products">商品系列</a>
+    <a href="#services">服務項目</a>
+    <a href="#contact">聯絡我們</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">高雄市苓雅區 · 在地口碑銀樓</span>
+    <h1>細工成就<br><em>永恆之美</em></h1>
+    <p>鑽石金飾，承載的是每一個家族最珍貴的時刻與記憶。</p>
+    <a href="#contact" class="btn">立即預約諮詢</a>
+  </div>
+</section>
+
+<div class="highlight-strip">
+  <div class="highlight-item">
+    <span class="num">GIA</span>
+    <span>國際認證鑽石</span>
+  </div>
+  <div class="highlight-item">
+    <span class="num">24K</span>
+    <span>純金金飾</span>
+  </div>
+  <div class="highlight-item">
+    <span class="num">100%</span>
+    <span>誠信計價</span>
+  </div>
+  <div class="highlight-item">
+    <span class="num">在地</span>
+    <span>苓雅深耕多年</span>
+  </div>
+</div>
+
+<section id="story">
+  <div class="story">
+    <div class="story-text">
+      <span class="section-label">Our Story</span>
+      <h2>在苓雅，<br>守護每個幸福家庭</h2>
+      <div class="divider"></div>
+      <p>福西珠寶銀樓扎根苓雅區多年，以在地家庭為主要服務對象，憑藉誠實計價與貼心服務在社區建立深厚口碑。</p>
+      <p>從結婚金飾到鑽石婚戒，我們見證無數高雄家庭最幸福的瞬間。每一件飾品，都是我們對品質與信任最真誠的承諾。</p>
+      <p>如今，我們活躍於 Facebook 與 LINE 社群，定期分享金價行情、精選商品與保養知識，讓您隨時掌握最新資訊。</p>
+      <a href="#contact" class="btn btn-solid" style="margin-top: 16px;">了解更多</a>
+    </div>
+    <div class="story-img"></div>
+  </div>
+</section>
+
+<div class="products-section" id="products">
+  <div class="products-inner">
+    <div class="products-header">
+      <span class="section-label">Collections</span>
+      <h2>精選商品</h2>
+      <div class="divider" style="margin: 20px auto;"></div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="鑽石戒指">
+        </div>
+        <div class="product-info">
+          <h3>鑽石婚戒</h3>
+          <p>採用 GIA 認證裸鑽，圓形、公主方等多種切割任您選。18K 白金、黃金、玫瑰金戒台配搭，打造專屬婚戒。</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="金飾">
+        </div>
+        <div class="product-info">
+          <h3>純金金飾</h3>
+          <p>足金 9999 系列，包含項鍊、手鍊、戒指、耳環，傳統婚嫁必備，可依需求客製重量與款式。</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&q=80" alt="珠寶首飾">
+        </div>
+        <div class="product-info">
+          <h3>彩色寶石珠寶</h3>
+          <p>精選紅寶、藍寶、祖母綠等彩色寶石，搭配鑽石邊鑲，呈現高級珠寶質感，送禮自用兩相宜。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="services">
+  <span class="section-label">Services</span>
+  <h2>服務項目</h2>
+  <div class="divider"></div>
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-icon">💎</div>
+      <h3>鑽石挑選與鑑定</h3>
+      <p>提供 GIA 認證鑽石完整說明，協助您理解 4C（切割、顏色、淨度、克拉），找到預算內最佳選擇。</p>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🏅</div>
+      <h3>黃金買賣回收</h3>
+      <p>依每日國際金價計算，舊金回收不扣耗損，誠信透明。可現場換購新品，節省時間與費用。</p>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🔧</div>
+      <h3>飾品修繕保養</h3>
+      <p>戒指重新拋光、鑲石加固、斷鍊修復，讓珍藏多年的飾品恢復昔日光彩，傳承家族記憶。</p>
+    </div>
+  </div>
+</section>
+
+<div class="testimonials-section">
+  <div class="testimonials-inner">
+    <span class="section-label">Reviews</span>
+    <h2>顧客的話</h2>
+    <div class="divider"></div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>「在這裡買了結婚金飾，老闆從頭到尾都很誠懇，價格也很合理。鄰居都說是苓雅最值得信賴的銀樓！」</p>
+        <span class="reviewer">— 高雄苓雅 王太太</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>「拿舊金換了一條新款項鍊，計價非常透明，完全沒有多收費用。服務親切，下次還會再來！」</p>
+        <span class="reviewer">— 高雄 吳小姐</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>「Facebook 直播看到特價活動就來了，現場商品比照片還漂亮。老闆娘很有耐心介紹，超滿意！」</p>
+        <span class="reviewer">— 高雄 蔡先生</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="contact" style="max-width: 1200px;">
+  <div class="contact-section">
+    <div class="contact-info">
+      <span class="section-label">Find Us</span>
+      <h2>歡迎到店<br>或透過社群聯繫</h2>
+      <div class="divider"></div>
+      <div class="contact-detail">
+        <span class="icon">📍</span>
+        <div class="text">
+          <strong>門市地址</strong>
+          高雄市苓雅區福西街 20 號
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">📞</span>
+        <div class="text">
+          <strong>聯絡電話</strong>
+          0933-202-022 ／ (07) 751-4734
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">🕐</span>
+        <div class="text">
+          <strong>營業時間</strong>
+          10:30 – 20:00（週日公休）
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">💬</span>
+        <div class="text">
+          <strong>LINE 官方帳號</strong>
+          ID：@Fushi
+        </div>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" onsubmit="return false;">
+        <input type="text" placeholder="您的姓名 *">
+        <input type="tel" placeholder="聯絡電話 *">
+        <select>
+          <option value="">選擇諮詢項目</option>
+          <option>鑽石婚戒</option>
+          <option>純金金飾</option>
+          <option>黃金回收</option>
+          <option>飾品修繕</option>
+          <option>其他詢問</option>
+        </select>
+        <textarea placeholder="留下您的問題或需求，我們盡快回覆您"></textarea>
+        <button type="submit">送出訊息</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">福西珠寶鑽石金飾銀樓</span>
+  <p>高雄市苓雅區福西街 20 號</p>
+  <div class="footer-links">
+    <a href="#">Facebook</a>
+    <a href="#">Instagram</a>
+    <a href="#">LINE</a>
+  </div>
+  <p>© 2026 福西珠寶 · 此為 Demo 展示頁面</p>
+</footer>
+
+<script>
+  const h = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => {
+    h.classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+</body>
+</html>

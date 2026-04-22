@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金石山金飾鑽石專賣店 | 台中西屯區 黃金・鑽石・婚嫁金飾</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --gold: #C9A84C;
+    --dark: #1A1508;
+    --gray: #6B6457;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans TC', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.7; }
+
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.4s, box-shadow 0.4s;
+    background: rgba(250, 247, 242, 0.82);
+    backdrop-filter: blur(10px);
+  }
+  header.scrolled {
+    background: rgba(250, 247, 242, 0.97);
+    box-shadow: 0 1px 20px rgba(26, 21, 8, 0.08);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--dark); text-decoration: none;
+  }
+  nav a {
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gray); text-decoration: none; margin-left: 30px;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  .hero {
+    position: relative; height: 100vh; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1920&q=80') center/cover no-repeat;
+    animation: zoomIn 12s ease-out forwards;
+  }
+  @keyframes zoomIn {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.0); }
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(26,21,8,0.55) 0%, rgba(26,21,8,0.35) 100%);
+  }
+  .hero-content { position: relative; z-index: 1; color: #fff; padding: 0 20px; }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px; display: block;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.15; margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 1rem; font-weight: 300; opacity: 0.88; max-width: 500px; margin: 0 auto 36px;
+  }
+  .btn {
+    display: inline-block; padding: 14px 38px;
+    border: 1.5px solid var(--gold); color: var(--gold);
+    text-decoration: none; font-size: 0.8rem; letter-spacing: 0.2em;
+    text-transform: uppercase; transition: all 0.3s; font-family: 'Noto Sans TC', sans-serif;
+  }
+  .btn:hover { background: var(--gold); color: var(--dark); }
+  .btn-solid { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .btn-solid:hover { background: #b8913d; border-color: #b8913d; }
+
+  section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px; display: block;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 3.5vw, 3rem); font-weight: 400; line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .divider { width: 50px; height: 1.5px; background: var(--gold); margin: 28px 0; }
+
+  .story { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .story-img {
+    aspect-ratio: 3/4; overflow: hidden;
+    background: url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=900&q=80') center/cover;
+  }
+  .story-text p { color: var(--gray); margin-bottom: 16px; font-size: 0.97rem; line-height: 1.9; }
+
+  .products-section { background: #F2EDE4; padding: 100px 40px; }
+  .products-inner { max-width: 1200px; margin: 0 auto; }
+  .products-header { text-align: center; margin-bottom: 60px; }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .product-card { background: var(--cream); overflow: hidden; }
+  .product-img { aspect-ratio: 1; overflow: hidden; background: #e8e0d4; }
+  .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .product-card:hover .product-img img { transform: scale(1.04); }
+  .product-info { padding: 24px 20px; }
+  .product-info h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .product-info p { color: var(--gray); font-size: 0.88rem; line-height: 1.7; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+  .service-item { text-align: center; padding: 40px 24px; border: 1px solid rgba(201,168,76,0.25); }
+  .service-icon { font-size: 2rem; margin-bottom: 20px; color: var(--gold); }
+  .service-item h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600;
+    margin-bottom: 12px; color: var(--dark);
+  }
+  .service-item p { color: var(--gray); font-size: 0.9rem; line-height: 1.75; }
+  .service-price {
+    display: inline-block; margin-top: 16px; padding: 6px 18px;
+    border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em;
+  }
+
+  .testimonials-section { background: var(--dark); padding: 100px 40px; }
+  .testimonials-inner { max-width: 1200px; margin: 0 auto; }
+  .testimonials-inner h2, .testimonials-inner .section-label { color: #fff; }
+  .testimonials-inner h2 { color: var(--cream); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 60px; }
+  .testimonial-card { padding: 36px 28px; border: 1px solid rgba(201,168,76,0.3); }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 18px; }
+  .testimonial-card p { color: rgba(250,247,242,0.8); font-size: 0.92rem; line-height: 1.85; font-style: italic; margin-bottom: 20px; }
+  .reviewer { color: var(--gold); font-size: 0.82rem; letter-spacing: 0.1em; }
+
+  .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-info h2 { margin-bottom: 10px; }
+  .contact-detail { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; padding-top: 20px; border-top: 1px solid rgba(201,168,76,0.2); }
+  .contact-detail:first-of-type { border-top: none; padding-top: 0; }
+  .contact-detail .icon { color: var(--gold); font-size: 1.1rem; margin-top: 2px; }
+  .contact-detail .text { font-size: 0.93rem; color: var(--gray); }
+  .contact-detail .text strong { color: var(--dark); display: block; margin-bottom: 2px; font-weight: 500; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    width: 100%; padding: 14px 18px;
+    border: 1px solid rgba(107,100,87,0.3); background: transparent;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 0.92rem; color: var(--dark);
+    outline: none; transition: border-color 0.3s;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--gold); }
+  .contact-form textarea { height: 130px; resize: vertical; }
+  .contact-form button {
+    padding: 15px; background: var(--gold); border: none; cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.15em; color: var(--dark); text-transform: uppercase;
+    transition: background 0.3s;
+  }
+  .contact-form button:hover { background: #b8913d; }
+
+  footer {
+    background: var(--dark); color: rgba(250,247,242,0.6);
+    padding: 50px 40px; text-align: center; font-size: 0.85rem;
+  }
+  footer .footer-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
+    color: var(--cream); margin-bottom: 16px; display: block; letter-spacing: 0.05em;
+  }
+  footer .footer-links { margin: 20px 0; }
+  footer .footer-links a { color: var(--gold); margin: 0 12px; text-decoration: none; font-size: 0.82rem; }
+  footer p { opacity: 0.6; font-size: 0.78rem; margin-top: 20px; }
+
+  @media (max-width: 768px) {
+    header { padding: 16px 20px; }
+    nav { display: none; }
+    section { padding: 70px 20px; }
+    .story { grid-template-columns: 1fr; gap: 40px; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-section { grid-template-columns: 1fr; gap: 40px; }
+    .products-section { padding: 70px 20px; }
+    .testimonials-section { padding: 70px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="mainHeader">
+  <a href="#" class="logo">金石山</a>
+  <nav>
+    <a href="#story">品牌故事</a>
+    <a href="#products">精選商品</a>
+    <a href="#services">服務項目</a>
+    <a href="#contact">預約諮詢</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">台中西屯區 · 鑽石・黃金・婚嫁金飾</span>
+    <h1>穩重如山，<br><em>溫潤似金</em></h1>
+    <p>從黃金到鑽石、從日常配戴到婚嫁套組，台中西屯在地守護著每一份珍貴的約定。</p>
+    <a href="#contact" class="btn">預約免費諮詢</a>
+  </div>
+</section>
+
+<section id="story">
+  <div class="story">
+    <div class="story-img"></div>
+    <div class="story-text">
+      <span class="section-label">Our Story</span>
+      <h2>在台中西屯，<br>為每一份重要承諾把關</h2>
+      <div class="divider"></div>
+      <p>金石山金飾鑽石專賣店坐落於台中市西屯區重慶路一帶，是在地人結婚嫁娶、彌月賀禮、長輩祝壽指定的老字號金飾店之一。</p>
+      <p>我們專營黃金、鑽石、婚嫁套組、金飾保值收藏，並提供舊金換新金、鑽石鑑定等服務。每一件飾品皆親自把關品質與成色，讓客人買得安心、戴得放心。</p>
+      <p>多年來靠的不是華麗廣告，而是在地鄉親一路口耳相傳的信任。這份信任，我們會繼續把它守好。</p>
+      <a href="#contact" class="btn btn-solid" style="margin-top: 16px;">預約到店</a>
+    </div>
+  </div>
+</section>
+
+<div class="products-section" id="products">
+  <div class="products-inner">
+    <div class="products-header">
+      <span class="section-label">Featured Collections</span>
+      <h2>精選商品系列</h2>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&q=80" alt="婚嫁金飾套組"></div>
+        <div class="product-info">
+          <h3>Bridal Collection</h3>
+          <p>龍鳳鐲、項鍊、耳環與戒指的完整婚嫁套組，陪伴每一位新娘步入人生新篇章。</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1603561596112-db542e6f2ff9?w=600&q=80" alt="GIA 鑽戒"></div>
+        <div class="product-info">
+          <h3>Diamond Ring</h3>
+          <p>精選 GIA 裸鑽，搭配經典六爪或低調包鑲款式，讓每一克拉都展現最佳光芒。</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80" alt="足金彌月禮"></div>
+        <div class="product-info">
+          <h3>Gold Gift</h3>
+          <p>足金彌月禮、長輩祝壽、生日祝福金飾，是在地家庭世代相傳的選擇。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="services">
+  <div style="text-align: center;">
+    <span class="section-label">Our Services</span>
+    <h2>專業服務項目</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-icon">✦</div>
+      <h3>Diamond Selection</h3>
+      <p>GIA 認證裸鑽選購，從 4C 介紹到實戴試戴，一對一協助挑到最適合的那一顆。</p>
+      <span class="service-price">預約諮詢</span>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">✦</div>
+      <h3>Bridal Set</h3>
+      <p>婚嫁金飾套組規劃，依預算與家庭習俗客製建議，提供完整組合方案。</p>
+      <span class="service-price">含諮詢服務</span>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">✦</div>
+      <h3>Gold Exchange</h3>
+      <p>黃金買賣、舊金換新、高價回收，當日行情公開透明，免手續費。</p>
+      <span class="service-price">當日報價</span>
+    </div>
+  </div>
+</section>
+
+<div class="testimonials-section">
+  <div class="testimonials-inner">
+    <div style="text-align: center;">
+      <span class="section-label">Customer Voices</span>
+      <h2>在地顧客真實分享</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>「準備婚嫁金飾時家裡指定要來金石山，老闆介紹得非常仔細，價錢也公道，整套買下來安心。」</p>
+        <div class="reviewer">— 台中客戶 佳妤</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>「鑽戒買了之後半年來清洗保養都很方便，老闆記得每一位客人，服務超級到位。」</p>
+        <div class="reviewer">— 台中客戶 彥成</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>「舊金換新報價透明、當場過磅清楚算給你看，這間在西屯是口耳相傳的好店。」</p>
+        <div class="reviewer">— 台中客戶 美蘭</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="contact-section">
+    <div class="contact-info">
+      <span class="section-label">Visit & Contact</span>
+      <h2>歡迎蒞臨<br>本店諮詢</h2>
+      <div class="divider"></div>
+      <div class="contact-detail">
+        <span class="icon">📍</span>
+        <div class="text"><strong>店鋪地址</strong>台中市西屯區重慶路 179 號</div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">☎</span>
+        <div class="text"><strong>聯絡電話</strong>04-2316-0588</div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">🕐</span>
+        <div class="text"><strong>營業時間</strong>週一～週六 10:00–20:00｜週日公休</div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">✉</span>
+        <div class="text"><strong>Instagram</strong>@jss.jewelry（私訊預約亦可）</div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('感謝您的詢問，我們會盡快回覆！');">
+      <span class="section-label">Inquiry Form</span>
+      <h2 style="font-size: 1.8rem; margin-bottom: 10px;">線上詢價</h2>
+      <input type="text" placeholder="姓名" required>
+      <input type="tel" placeholder="聯絡電話" required>
+      <input type="email" placeholder="電子信箱">
+      <select>
+        <option>服務項目（請選擇）</option>
+        <option>婚嫁金飾套組</option>
+        <option>GIA 鑽戒・鑽石</option>
+        <option>彌月／祝壽金飾</option>
+        <option>舊金換新／黃金回收</option>
+      </select>
+      <textarea placeholder="需求說明（預算、款式、預計時間⋯）"></textarea>
+      <button type="submit">送出詢價</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">金石山金飾鑽石專賣店</span>
+  <p>台中市西屯區重慶路 179 號｜在地信賴的婚嫁金飾首選</p>
+  <div class="footer-links">
+    <a href="#story">品牌故事</a>
+    <a href="#products">精選商品</a>
+    <a href="#services">服務項目</a>
+    <a href="#contact">聯絡我們</a>
+  </div>
+  <p>© 2026 金石山金飾鑽石專賣店 All Rights Reserved.</p>
+</footer>
+
+<script>
+  const h = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => h.classList.toggle('scrolled', scrollY > 60));
+</script>
+</body>
+</html>

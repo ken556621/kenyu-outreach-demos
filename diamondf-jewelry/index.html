@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiamondF 珠寶 | 台中傳承三代の客製婚戒工作室</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3EE;
+    --gold: #C4A882;
+    --brown: #8B7355;
+    --dark: #1C1812;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans TC', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.7; }
+
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.4s, box-shadow 0.4s;
+    background: rgba(247, 243, 238, 0.82);
+    backdrop-filter: blur(10px);
+  }
+  header.scrolled {
+    background: rgba(247, 243, 238, 0.97);
+    box-shadow: 0 1px 20px rgba(28, 24, 18, 0.08);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--dark); text-decoration: none;
+  }
+  nav a {
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--brown); text-decoration: none; margin-left: 30px;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  .hero {
+    position: relative; height: 100vh; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1519741497674-4b4f3b26c3f7?w=1920&q=80') center/cover no-repeat;
+    animation: zoomIn 12s ease-out forwards;
+  }
+  @keyframes zoomIn {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.0); }
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(28,24,18,0.55) 0%, rgba(28,24,18,0.35) 100%);
+  }
+  .hero-content { position: relative; z-index: 1; color: #fff; padding: 0 20px; }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px; display: block;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.15; margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 1rem; font-weight: 300; opacity: 0.88; max-width: 520px; margin: 0 auto 36px;
+  }
+  .btn {
+    display: inline-block; padding: 14px 38px;
+    border: 1.5px solid var(--gold); color: var(--gold);
+    text-decoration: none; font-size: 0.8rem; letter-spacing: 0.2em;
+    text-transform: uppercase; transition: all 0.3s; font-family: 'Noto Sans TC', sans-serif;
+  }
+  .btn:hover { background: var(--gold); color: var(--dark); }
+  .btn-solid { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .btn-solid:hover { background: #b39a73; border-color: #b39a73; }
+
+  section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px; display: block;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 3.5vw, 3rem); font-weight: 400; line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .divider { width: 50px; height: 1.5px; background: var(--gold); margin: 28px 0; }
+
+  .story { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .story-img {
+    aspect-ratio: 3/4; overflow: hidden;
+    background: url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=900&q=80') center/cover;
+  }
+  .story-text p { color: var(--brown); margin-bottom: 16px; font-size: 0.97rem; line-height: 1.9; }
+
+  .products-section { background: #EDE6DC; padding: 100px 40px; }
+  .products-inner { max-width: 1200px; margin: 0 auto; }
+  .products-header { text-align: center; margin-bottom: 60px; }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .product-card { background: var(--cream); overflow: hidden; }
+  .product-img { aspect-ratio: 1; overflow: hidden; background: #ded5c7; }
+  .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .product-card:hover .product-img img { transform: scale(1.04); }
+  .product-info { padding: 24px 20px; }
+  .product-info h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .product-info p { color: var(--brown); font-size: 0.88rem; line-height: 1.7; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+  .service-item { text-align: center; padding: 40px 24px; border: 1px solid rgba(196,168,130,0.25); }
+  .service-icon { font-size: 2rem; margin-bottom: 20px; color: var(--gold); }
+  .service-item h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600;
+    margin-bottom: 12px; color: var(--dark);
+  }
+  .service-item p { color: var(--brown); font-size: 0.9rem; line-height: 1.75; }
+  .service-price {
+    display: inline-block; margin-top: 16px; padding: 6px 18px;
+    border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em;
+  }
+
+  .testimonials-section { background: var(--dark); padding: 100px 40px; }
+  .testimonials-inner { max-width: 1200px; margin: 0 auto; }
+  .testimonials-inner h2, .testimonials-inner .section-label { color: #fff; }
+  .testimonials-inner h2 { color: var(--cream); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 60px; }
+  .testimonial-card { padding: 36px 28px; border: 1px solid rgba(196,168,130,0.3); }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 18px; }
+  .testimonial-card p { color: rgba(247,243,238,0.8); font-size: 0.92rem; line-height: 1.85; font-style: italic; margin-bottom: 20px; }
+  .reviewer { color: var(--gold); font-size: 0.82rem; letter-spacing: 0.1em; }
+
+  .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-info h2 { margin-bottom: 10px; }
+  .contact-detail { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; padding-top: 20px; border-top: 1px solid rgba(196,168,130,0.2); }
+  .contact-detail:first-of-type { border-top: none; padding-top: 0; }
+  .contact-detail .icon { color: var(--gold); font-size: 1.1rem; margin-top: 2px; }
+  .contact-detail .text { font-size: 0.93rem; color: var(--brown); }
+  .contact-detail .text strong { color: var(--dark); display: block; margin-bottom: 2px; font-weight: 500; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    width: 100%; padding: 14px 18px;
+    border: 1px solid rgba(139,115,85,0.3); background: transparent;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 0.92rem; color: var(--dark);
+    outline: none; transition: border-color 0.3s;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--gold); }
+  .contact-form textarea { height: 130px; resize: vertical; }
+  .contact-form button {
+    padding: 15px; background: var(--gold); border: none; cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.15em; color: var(--dark); text-transform: uppercase;
+    transition: background 0.3s;
+  }
+  .contact-form button:hover { background: #b39a73; }
+
+  footer {
+    background: var(--dark); color: rgba(247,243,238,0.6);
+    padding: 50px 40px; text-align: center; font-size: 0.85rem;
+  }
+  footer .footer-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
+    color: var(--cream); margin-bottom: 16px; display: block; letter-spacing: 0.05em;
+  }
+  footer .footer-links { margin: 20px 0; }
+  footer .footer-links a { color: var(--gold); margin: 0 12px; text-decoration: none; font-size: 0.82rem; }
+  footer p { opacity: 0.6; font-size: 0.78rem; margin-top: 20px; }
+
+  @media (max-width: 768px) {
+    header { padding: 16px 20px; }
+    nav { display: none; }
+    section { padding: 70px 20px; }
+    .story { grid-template-columns: 1fr; gap: 40px; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-section { grid-template-columns: 1fr; gap: 40px; }
+    .products-section { padding: 70px 20px; }
+    .testimonials-section { padding: 70px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="mainHeader">
+  <a href="#" class="logo">DiamondF</a>
+  <nav>
+    <a href="#story">品牌故事</a>
+    <a href="#products">婚戒系列</a>
+    <a href="#services">客製流程</a>
+    <a href="#contact">預約諮詢</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Taichung · 傳承三代 · 50 年珠寶工藝</span>
+    <h1>為兩個人，<br><em>打造唯一</em></h1>
+    <p>義式與日式工藝的交會，用半世紀的手藝與真誠，為每一對準新人打造專屬婚戒。</p>
+    <a href="#contact" class="btn">預約客製諮詢</a>
+  </div>
+</section>
+
+<section id="story">
+  <div class="story">
+    <div class="story-img"></div>
+    <div class="story-text">
+      <span class="section-label">Three Generations</span>
+      <h2>從爺爺、父親，<br>到現在，DiamondF 的真心沒變</h2>
+      <div class="divider"></div>
+      <p>DiamondF 在台中已走過 50 個年頭，現在傳到第三代。我們傳承了上一代「誠實」兩個字的經營信念，並融入義式與日式珠寶工藝的精準細節，讓每一枚戒指都經得起一輩子的檢視。</p>
+      <p>對我們來說，婚戒從來不只是飾品。它是兩個人決定攜手一生的見證，是值得在未來每一次抬手時，都能想起那份心意的信物。</p>
+      <p>每一件作品，我們都陪客人從選鑽、設計、試戴到完成，全程一對一服務。這是三代人對「幸福感」最樸實的堅持。</p>
+      <a href="#contact" class="btn btn-solid" style="margin-top: 16px;">預約到店</a>
+    </div>
+  </div>
+</section>
+
+<div class="products-section" id="products">
+  <div class="products-inner">
+    <div class="products-header">
+      <span class="section-label">Signature Collection</span>
+      <h2>婚戒與客製系列</h2>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=600&q=80" alt="Cross 對戒"></div>
+        <div class="product-info">
+          <h3>Cross 對戒</h3>
+          <p>象徵「相遇、相交、相守」的簡約線條，是 DiamondF 最具辨識度的婚戒系列。</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1603561596112-db542e6f2ff9?w=600&q=80" alt="Solitaire 鑽戒"></div>
+        <div class="product-info">
+          <h3>Solitaire Ring</h3>
+          <p>義式六爪經典鑲嵌，將每一顆裸鑽的光芒發揮到極致，是傳世的浪漫。</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=600&q=80" alt="客製珍珠飾品"></div>
+        <div class="product-info">
+          <h3>Bespoke Pearl</h3>
+          <p>客製珍珠飾品、改戒台、紀念小物 —— 替一顆家傳的老寶石，尋找新的生命。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="services">
+  <div style="text-align: center;">
+    <span class="section-label">Our Process</span>
+    <h2>客製流程</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-icon">✦</div>
+      <h3>Consultation</h3>
+      <p>一對一諮詢。聊聊兩人的故事、風格喜好與預算區間，讓我們理解你們。</p>
+      <span class="service-price">免費預約</span>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">✦</div>
+      <h3>Design</h3>
+      <p>由設計師繪製草圖與 3D 打樣，反覆修改直到每一個細節都成為你們喜歡的樣子。</p>
+      <span class="service-price">含於客製流程</span>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">✦</div>
+      <h3>Craft & Deliver</h3>
+      <p>義式六爪／日式無縫工藝打造，完成後一對一交付，並提供終身保養服務。</p>
+      <span class="service-price">約 4–8 週</span>
+    </div>
+  </div>
+</section>
+
+<div class="testimonials-section">
+  <div class="testimonials-inner">
+    <div style="text-align: center;">
+      <span class="section-label">Couples' Stories</span>
+      <h2>來自準新人的真實分享</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>「從諮詢、選鑽到完成，老闆娘都耐心陪我們討論每一個細節。Cross 對戒戴上去就再也不想拿下來。」</p>
+        <div class="reviewer">— 台中客戶 L & W</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>「跑了很多家婚戒店，最後選 DiamondF 是因為他們真的懂『傳家』這兩個字的重量。」</p>
+        <div class="reviewer">— 彰化客戶 Y & H</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>「阿嬤留下的老戒指，第三代設計師重新改出了有溫度的款式，戴在手上會想起一整個家族的回憶。」</p>
+        <div class="reviewer">— 台中客戶 Nina</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="contact-section">
+    <div class="contact-info">
+      <span class="section-label">Visit Our Studio</span>
+      <h2>預約<br>到店諮詢</h2>
+      <div class="divider"></div>
+      <div class="contact-detail">
+        <span class="icon">📍</span>
+        <div class="text"><strong>工作室地址</strong>台中市南屯區大墩 14 街 296 號 1 樓</div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">☎</span>
+        <div class="text"><strong>預約專線</strong>04-2310-8781</div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">🕐</span>
+        <div class="text"><strong>營業時間</strong>週二～週日 11:00–20:00｜週一公休</div>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">✉</span>
+        <div class="text"><strong>Instagram</strong>@diamondf.tw（私訊預約亦可）</div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('感謝您的詢問，我們會盡快回覆！');">
+      <span class="section-label">Inquiry Form</span>
+      <h2 style="font-size: 1.8rem; margin-bottom: 10px;">線上詢問</h2>
+      <input type="text" placeholder="兩位姓名" required>
+      <input type="tel" placeholder="聯絡電話" required>
+      <input type="email" placeholder="電子信箱">
+      <select>
+        <option>服務項目（請選擇）</option>
+        <option>客製婚戒對戒</option>
+        <option>鑽戒設計</option>
+        <option>家傳珠寶改款</option>
+        <option>其他客製珠寶</option>
+      </select>
+      <textarea placeholder="告訴我們兩位的故事、風格喜好與預期時程⋯"></textarea>
+      <button type="submit">送出預約詢問</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">DiamondF Jewelry</span>
+  <p>台中南屯區大墩 14 街 296 號 1 樓｜傳承三代的珠寶品牌</p>
+  <div class="footer-links">
+    <a href="#story">品牌故事</a>
+    <a href="#products">婚戒系列</a>
+    <a href="#services">客製流程</a>
+    <a href="#contact">預約諮詢</a>
+  </div>
+  <p>© 2026 DiamondF Jewelry All Rights Reserved.</p>
+</footer>
+
+<script>
+  const h = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => h.classList.toggle('scrolled', scrollY > 60));
+</script>
+</body>
+</html>
